@@ -40,7 +40,7 @@
 
                         <div>
                             <ul class="list-group">
-                                <li class="list-group-item">Saint Louis,MO</li>
+                                <button class="btn btn-outline-secondary list-group-item">SAINT LOUIS,MO</button>
                             </ul>
                         </div>
                     </div>
@@ -52,7 +52,15 @@
                     <div class="card-header">
                     Weather Dashboard
                     </div>
+                    <!--Retrieved content dumps here-->
                     <div class="card-body">
+                        <div class="city"></div>
+                        <div class="tempF"></div>
+                        <div class="feelsLike"></div>
+                        <div class="high"></div>
+                        <div class="low"></div>
+                        <div class="wind"></div>
+                        <div class="humidity"></div>  
                     </div>
                 </div>
                 <div class="card shadow-lg p-3 mb-5 bg-white rounded"">
@@ -60,6 +68,13 @@
                     5 Day Forcast
                     </div>
                     <div class="card-body">
+                        <div class="row forecast">
+                            <div id="dayOne" class="card col-2">test</div>
+                            <div id="dayTwo" class="card col-2">test</div>
+                            <div id="dayThree" class="card col-2">test</div>
+                            <div id="dayFour" class="card col-2">test</div>
+                            <div id="dayFive" class="card col-2">test</div>
+                          </div>
                     </div>
                 </div>
             </main>
@@ -68,6 +83,7 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    <script src="./moment.js"></script>
     <script src="./script.js"></script>
 </body>
 </html>
