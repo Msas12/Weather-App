@@ -13,6 +13,8 @@
 // 	console.log(response1);
 // });
 
+var cityList = []
+
 
 // Function to call openweathermap for info on searched city
 function searchCityWeather (input) {
@@ -27,24 +29,20 @@ $.ajax({
     console.log(response);
 
 
-    // Convert the temp to fahrenheit
+    // Set the temps to variables
     var tempF = response.main.temp
-    var tempFMax = response.main.temp_max
-    var tempFMin = response.main.temp_min
     var tempFFeelsLike = response.main.temp_min
 
     // Transfer Content to HTML
-    $(".city").html("<h4>" + response.name + "</h4>");
+    // Adds Weather Icon next to City Name
+    const dayZeroIcon = (`http://openweathermap.org/img/w/${response.weather[0].icon}.png`)
+    $(".city").html("<h4>" + response.name + (`<i><img src="${dayZeroIcon}" alt="Weather Icon"></i>`) + "</h4>");
+    //$(".city").html(`<h4>${response.name}<i><img src="${dayZeroIcon}" alt="Weather Icon"></i></h4>`);
     $(".tempF").html("Temp: " + tempF.toFixed(2) + '<span>&#176;</span>');
     $(".feelsLike").html("Feels Like: " + tempFFeelsLike.toFixed(0) + '<span>&#176;</span>');
-    $(".high").html("High: " + tempFMax.toFixed(0) + '<span>&#176;</span>');
-    $(".low").html("Low: " + tempFMin.toFixed(0) + '<span>&#176;</span>');
     $(".wind").text("Wind Speed: " + response.wind.speed + " mph");
     $(".humidity").text("Humidity: " + response.main.humidity + "%");
 
-    // Adds Weather Icon next to City Name
-    const dayZeroIcon = (`http://openweathermap.org/img/w/${response.weather[0].icon}.png`)
-    $('.city').append(`<i><img src="${dayZeroIcon}" alt="Weather Icon"></i>`)
   });
 
 }
@@ -52,7 +50,7 @@ $.ajax({
 // Function to call openweathermap for 5 Day forcast on searched city
 function searchCityForecast (input) {
     // Sets Variables for Open Weather API
-    var queryURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + input + ",us" + "&units=imperial" + "&APPID=1d030b0a789179884a5605722b50f289"
+    var queryURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + input + ",us" +  "&units=imperial" + "&APPID=1d030b0a789179884a5605722b50f289"
     
     // Calls Open Weather API
     $.ajax({
@@ -61,15 +59,15 @@ function searchCityForecast (input) {
       }).then(function(response) {
         console.log(response);
 
-        const dayOneBlock = response.list[7];
+        const dayOneBlock = response.list[2];
         // console.log(dayOneBlock);
-        const dayTwoBlock = response.list[15];
+        const dayTwoBlock = response.list[10];
         // console.log(dayTwoBlock);
-        const dayThreeBlock = response.list[23];
+        const dayThreeBlock = response.list[18];
         // console.log(dayThreeBlock);
-        const dayFourBlock = response.list[31];
+        const dayFourBlock = response.list[26];
         // console.log(dayFourBlock);
-        const dayFiveBlock = response.list[39];
+        const dayFiveBlock = response.list[34];
         // console.log(dayFiveBlock);
 
       });
@@ -87,6 +85,10 @@ $(".search-button").on("click", function(event) {
     var addButton = cityButton.text(searchInput)
     $('.list-group').append(addButton)
 
+    cityList.push(searchInput)
+    localStorage.setItem("cities", JSON.stringify(cityList))
+    console.log(cityList)
+
     // Running the searchCity function(passing in the artist as an argument)
     searchCityWeather(searchInput)
     searchCityForecast(searchInput)
@@ -100,8 +102,28 @@ $('.search-input').keypress(function(e){
 });
 
 // Pushes clicked saved item through searchCity Function to retrieve info on that city again
-$('.list-group-item').on('click', function(){
-    var listedCity = $('.list-group-item').text()
+$(document).on('click', '.list-group-item', function(){
+    var listedCity = $(this).text()
+    console.log(listedCity)
     searchCityWeather(listedCity)
     searchCityForecast(listedCity)
 })
+
+function getSavedCities() {
+  var savedCities = JSON.parse(localStorage.getItem('cities'))
+  console.log(savedCities)
+
+  if (savedCities !== null) {
+    cityList = savedCities
+
+    // Display saved Cities in list
+    for (var i=0; i<cityList.length; i++) {
+      var cityButton = $('<button>').addClass("btn btn-outline-secondary list-group-item")
+      var addButton = cityButton.text(cityList[i])
+      $('.list-group').append(addButton)
+    }
+  }
+
+}
+
+getSavedCities()
