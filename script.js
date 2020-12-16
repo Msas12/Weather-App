@@ -4,7 +4,7 @@ var cityList = []
 // Function to call openweathermap for info on searched city
 function searchCityWeather (input) {
 // Sets Variables for Open Weather API
-var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + input + ",us" + "&units=imperial" + "&APPID=1d030b0a789179884a5605722b50f289"
+var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + input + ",us" + "&units=imperial" + "&APPID=1d030b0a789179884a5605722b50f289"
 
 // Calls Openweathermap API - Current Weatehr
 $.ajax({
@@ -31,7 +31,7 @@ $.ajax({
 
     var lat = response.coord.lat
     var lon = response.coord.lon
-    var queryURL = "http://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon+ "&units=imperial" + "&APPID=1d030b0a789179884a5605722b50f289"
+    var queryURL = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon+ "&units=imperial" + "&APPID=1d030b0a789179884a5605722b50f289"
 
     // Calls Openweather API OneCall
     $.ajax({
@@ -67,7 +67,7 @@ $.ajax({
 // Function to call openweathermap for 5 Day forcast on searched city
 function searchCityForecast (input) {
     // Sets Variables for Open Weather API
-    var queryURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + input + ",us" +  "&units=imperial" + "&APPID=1d030b0a789179884a5605722b50f289"
+    var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + input + ",us" +  "&units=imperial" + "&APPID=1d030b0a789179884a5605722b50f289"
     
     // Calls Open Weather API
     $.ajax({
