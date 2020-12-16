@@ -1,18 +1,3 @@
-// const settings = {
-// 	"async": true,
-// 	"crossDomain": true,
-// 	"url": "https://ip-geo-location.p.rapidapi.com/ip/23.123.12.11?format=json",
-// 	"method": "GET",
-// 	"headers": {
-// 		"x-rapidapi-key": "d7c407139dmsh3168e98d3071accp1df2d1jsncf860db85460",
-// 		"x-rapidapi-host": "ip-geo-location.p.rapidapi.com"
-// 	}
-// };
-
-// $.ajax(settings).done(function (response1) {
-// 	console.log(response1);
-// });
-
 var cityList = []
 
 
