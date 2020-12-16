@@ -21,7 +21,7 @@ function searchCityWeather (input) {
 // Sets Variables for Open Weather API
 var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + input + ",us" + "&units=imperial" + "&APPID=1d030b0a789179884a5605722b50f289"
 
-// Calls Open Weather API
+// Calls Openweathermap API - Current Weatehr
 $.ajax({
     url: queryURL,
     method: "GET"
@@ -33,14 +33,47 @@ $.ajax({
     var tempF = response.main.temp
     var tempFFeelsLike = response.main.temp_min
 
-    // Transfer Content to HTML
-    // Adds Weather Icon next to City Name
+    // Adds Weather Icon to a variable
     const dayZeroIcon = (`http://openweathermap.org/img/w/${response.weather[0].icon}.png`)
-    $(".city").html("<h4>" + response.name + (`<i><img src="${dayZeroIcon}" alt="Weather Icon"></i>`) + "</h4>")
+
+   // Transfer Content to HTML Main Dashboard
+    $(".city").html("<h4>" + response.name + " (" + (moment().utc().format("MMM Do")) + ")" + "</h4>")
+    $(".description").html("<h5>" + response.weather[0].main + (`<i><img src="${dayZeroIcon}" alt="Weather Icon"></i>`) + "<h5>")
     $(".tempF").html("Temp: " + tempF.toFixed(2) + '<span>&#176; F</span>');
     $(".feelsLike").html("Feels Like: " + tempFFeelsLike.toFixed(0) + '<span>&#176;</span>')
     $(".wind").text("Wind Speed: " + response.wind.speed + " mph")
     $(".humidity").text("Humidity: " + response.main.humidity + "%")
+
+    var lat = response.coord.lat
+    var lon = response.coord.lon
+    var queryURL = "http://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon+ "&units=imperial" + "&APPID=1d030b0a789179884a5605722b50f289"
+
+    // Calls Openweather API OneCall
+    $.ajax({
+      url: queryURL,
+      method: "GET"
+    }).then(function(response) {
+      console.log(response);
+
+      //Gets info for current date
+      // var date = 
+      
+      // Pulls info and sets color for UV Index 
+      var uvi = response.daily[0].uvi
+      var uviEl = $('.uvi')
+
+      uviEl.text(`UV Index: ${uvi}`)
+
+      if (uvi <= 2) {
+        console.log(uvi)
+        uviEl.css('color', 'green')
+      }else if (uvi>=6) {
+        uviEl.css('color', 'red')
+      }else {
+        uviEl.css('color', 'orange')
+      }
+
+    });
 
   });
 
@@ -57,12 +90,6 @@ function searchCityForecast (input) {
         method: "GET"
       }).then(function(response) {
         console.log(response)
-
-        // $('#dayOne').epmty()
-        // $('#dayTwo').epmty()
-        // $('#dayThree').epmty()
-        // $('#dayFour').epmty()
-        // $('#dayFive').epmty()
 
         // Set forecast section of for each day to variables
         var dayOneBlock = response.list[2]
@@ -85,34 +112,41 @@ function searchCityForecast (input) {
         var dayFourIcon = (`http://openweathermap.org/img/w/${dayFourBlock.weather[0].icon}.png`)
         var dayFiveIcon = (`http://openweathermap.org/img/w/${dayFiveBlock.weather[0].icon}.png`)
 
+
+
         // Day 1 forecast card info
-        $('#dayOne').append("<h5>" + dateOneText + "</h5>")
-        $('#dayOne').append(`<i><img src="${dayOneIcon}" alt="Weather Icon"></i>`)
+        $('#dayOne').html("<h5>" + dateOneText + "</h5>")
+        $('#dayOne').append(`<p>${dayOneBlock.weather[0].main}<i><img src="${dayOneIcon}" alt="Weather Icon"></i><p>`)
         $('#dayOne').append("<p>Temp: " + (dayOneBlock.main.temp).toFixed(0) + " &deg;F</p>")
+        $('#dayOne').append("<p>Wind Speed: " + dayOneBlock.wind.speed + " mph</p>")
         $('#dayOne').append("<p>Humidity: " + dayOneBlock.main.humidity + "%</p>")
 
         // Day 2 forecast card info
-        $('#dayTwo').append("<h5>" + dateTwoText + "</h5>")
-        $('#dayTwo').append(`<i><img src="${dayTwoIcon}" alt="Weather Icon"></i>`)
+        $('#dayTwo').html("<h5>" + dateTwoText + "</h5>")
+        $('#dayTwo').append(`<p>${dayTwoBlock.weather[0].main}<i><img src="${dayTwoIcon}" alt="Weather Icon"></i><p>`)
         $('#dayTwo').append("<p>Temp: " + (dayTwoBlock.main.temp).toFixed(0) + " &deg;F</p>")
+        $('#dayTwo').append("<p>Wind Speed: " + dayTwoBlock.wind.speed + " mph</p>")
         $('#dayTwo').append("<p>Humidity: " + dayTwoBlock.main.humidity + "%</p>")
 
         // Day 3 forecast card info
-        $('#dayThree').append("<h5>" + dateThreeText + "</h5>")
-        $('#dayThree').append(`<i><img src="${dayThreeIcon}" alt="Weather Icon"></i>`)
+        $('#dayThree').html("<h5>" + dateThreeText + "</h5>")
+        $('#dayThree').append(`<p>${dayThreeBlock.weather[0].main}<i><img src="${dayThreeIcon}" alt="Weather Icon"></i><p>`)
         $('#dayThree').append("<p>Temp: " + (dayThreeBlock.main.temp).toFixed(0) + " &deg;F</p>")
+        $('#dayThree').append("<p>Wind Speed: " + dayThreeBlock.wind.speed + " mph</p>")
         $('#dayThree').append("<p>Humidity: " + dayThreeBlock.main.humidity + "%</p>")
 
         // Day 4 forecast card info
-        $('#dayFour').append("<h5>" + dateFourText + "</h5>")
-        $('#dayFour').append(`<i><img src="${dayFourIcon}" alt="Weather Icon"></i>`)
+        $('#dayFour').html("<h5>" + dateFourText + "</h5>")
+        $('#dayFour').append(`<p>${dayFourBlock.weather[0].main}<i><img src="${dayFourIcon}" alt="Weather Icon"></i><p>`)
         $('#dayFour').append("<p>Temp: " + (dayFourBlock.main.temp).toFixed(0) + " &deg;F</p>")
+        $('#dayFour').append("<p>Wind Speed: " + dayFourBlock.wind.speed + " mph</p>")
         $('#dayFour').append("<p>Humidity: " + dayFourBlock.main.humidity + "%</p>")
 
         // Day 5 forecast card info
-        $('#dayFive').append("<h5>" + dateFiveText + "</h5>")
-        $('#dayFive').append(`<i><img src="${dayFiveIcon}" alt="Weather Icon"></i>`)
+        $('#dayFive').html("<h5>" + dateFiveText + "</h5>")
+        $('#dayFive').append(`<p>${dayThreeBlock.weather[0].main}<i><img src="${dayFiveIcon}" alt="Weather Icon"></i><p>`)
         $('#dayFive').append("<p>Temp: " + (dayFiveBlock.main.temp).toFixed(0) + " &deg;F</p>")
+        $('#dayFive').append("<p>Wind Speed: " + dayFiveBlock.wind.speed + " mph</p>")
         $('#dayFive').append("<p>Humidity: " + dayFiveBlock.main.humidity + "%</p>")
 
       });
@@ -134,9 +168,12 @@ $(".search-button").on("click", function(event) {
     localStorage.setItem("cities", JSON.stringify(cityList))
     console.log(cityList)
 
+
     // Running the searchCity function(passing in the city input as an argument)
     searchCityWeather(searchInput)
     searchCityForecast(searchInput)
+
+
 })
 
 //Runs the on click function for Search button if enter pressed
@@ -153,6 +190,7 @@ $(document).on('click', '.list-group-item', function(){
 
     searchCityWeather(listedCity)
     searchCityForecast(listedCity)
+
 })
 
 function getSavedCities() {
@@ -167,6 +205,9 @@ function getSavedCities() {
       var cityButton = $('<button>').addClass("btn btn-outline-secondary list-group-item")
       var addButton = cityButton.text(cityList[i])
       $('.list-group').append(addButton)
+
+      searchCityWeather(cityList[i])
+      searchCityForecast(cityList[i])
     }
   }
 
