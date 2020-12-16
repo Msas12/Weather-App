@@ -170,8 +170,10 @@ $(".search-button").on("click", function(event) {
 
 
     // Running the searchCity function(passing in the city input as an argument)
+    $('#main-body').removeClass('d-none')
     searchCityWeather(searchInput)
     searchCityForecast(searchInput)
+    
 
 
 })
@@ -187,9 +189,11 @@ $('.search-input').keypress(function(e){
 $(document).on('click', '.list-group-item', function(){
     var listedCity = $(this).text()
     console.log(listedCity)
-
+    
+    $('#main-body').removeClass('d-none')
     searchCityWeather(listedCity)
     searchCityForecast(listedCity)
+    
 
 })
 
@@ -212,5 +216,7 @@ function getSavedCities() {
   }
 
 }
+
+// Function to clear Item Saved City from List and Local storage
 
 getSavedCities()
