@@ -145,6 +145,7 @@ $(".search-button").on("click", function(event) {
 
     // Storing the City search
     var searchInput = $('.search-input').val().toUpperCase().trim();
+
     var cityButton = $('<button>').addClass("btn btn-outline-secondary list-group-item")
     var addButton = cityButton.text(searchInput)
     $('.list-group').append(addButton)
