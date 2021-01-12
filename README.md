@@ -37,3 +37,6 @@ THEN I am presented with the last searched city forecast
 
 ## Link to website
 [Weather App Link](https://msas12.github.io/Weather-App/)
+
+## Creator Contact Info
+Mike Sasiela: mdsasiela@gmail.com
