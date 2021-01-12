@@ -149,6 +149,7 @@ $(".search-button").on("click", function(event) {
     var cityButton = $('<button>').addClass("btn btn-outline-secondary list-group-item")
     var addButton = cityButton.text(searchInput)
     $('.list-group').append(addButton)
+    
 
     cityList.push(searchInput)
     localStorage.setItem("cities", JSON.stringify(cityList))
@@ -159,9 +160,6 @@ $(".search-button").on("click", function(event) {
     $('#main-body').removeClass('d-none')
     searchCityWeather(searchInput)
     searchCityForecast(searchInput)
-    
-
-
 })
 
 //Runs the on click function for Search button if enter pressed
