@@ -1,5 +1,14 @@
 var cityList = []
 
+function findListedCity(c) {
+  for (var i = 0; i < cityList.length; i++) {
+    if (c.toUpperCase() === cityList[i].toUpperCase()) {
+      return true;
+    }
+  }
+  return false;
+}
+
 
 // Function to call openweathermap for info on searched city
 function searchCityWeather (input) {
@@ -145,6 +154,11 @@ $(".search-button").on("click", function(event) {
 
     // Storing the City search
     var searchInput = $('.search-input').val().toUpperCase().trim();
+    
+    // If State is listed already do not list
+    if (findListedCity(searchInput)) {
+      return;
+    }
 
     var cityButton = $('<button>').addClass("btn btn-outline-secondary list-group-item")
     var addButton = cityButton.text(searchInput)
@@ -153,7 +167,6 @@ $(".search-button").on("click", function(event) {
     cityList.push(searchInput)
     localStorage.setItem("cities", JSON.stringify(cityList))
     console.log(cityList)
-
 
     // Running the searchCity function(passing in the city input as an argument)
     $('#main-body').removeClass('d-none')
