@@ -9,3 +9,7 @@ html, body {
   .clear-button {
       background-color: #a72733 !important;
   }
+
+  .navbar-text {
+      padding-left: 10px;
+  }
