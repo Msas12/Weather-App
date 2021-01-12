@@ -5,3 +5,7 @@ html, body {
     -o-background-size: cover;
     background-size: cover;
   }
+
+  .clear-button {
+      background-color: #dd3444 !important;
+  }
