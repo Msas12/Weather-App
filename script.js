@@ -150,7 +150,6 @@ $(".search-button").on("click", function(event) {
     var addButton = cityButton.text(searchInput)
     $('.list-group').append(addButton)
     
-
     cityList.push(searchInput)
     localStorage.setItem("cities", JSON.stringify(cityList))
     console.log(cityList)
@@ -160,6 +159,17 @@ $(".search-button").on("click", function(event) {
     $('#main-body').removeClass('d-none')
     searchCityWeather(searchInput)
     searchCityForecast(searchInput)
+
+    // Adds clear all button ONLY if it's not already there
+    if ($('.list-group').children().length == 1) {
+    // Adds a Clear all button to the bottom of searched list
+    var clearButton = $(`<a type="button" class="clear-button btn btn-danger">Clear All&nbsp;<i class="fas fa-times-circle"></i></a>`)
+
+    clearButton.addClass("list-group-item")
+    $('.list-group').after(clearButton)
+
+
+    }
 })
 
 //Runs the on click function for Search button if enter pressed
@@ -170,7 +180,12 @@ $('.search-input').keypress(function(e){
 });
 
 // Pushes clicked saved item through searchCity Function to retrieve info on that city again
-$(document).on('click', '.list-group-item', function(){
+$(document).on('click', '.list-group-item', function(event){
+  if (event.target.classList.contains("clear-button")) {
+    clearHistory(event)
+    return;
+  }
+
     var listedCity = $(this).text()
     console.log(listedCity)
     
@@ -197,10 +212,22 @@ function getSavedCities() {
       searchCityWeather(cityList[i])
       searchCityForecast(cityList[i])
     }
+    // Adds a Clear all button to the bottom of searched list
+    var clearButton = $(`<a type="button" class="clear-button btn btn-danger">Clear All&nbsp;<i class="fas fa-times-circle"></i></a>`)
+
+    clearButton.addClass("list-group-item")
+    $('.list-group').after(clearButton)
   }
 
 }
 
 // Function to clear Item Saved City from List and Local storage
-
 getSavedCities()
+
+//clear search history
+function clearHistory(event) {
+  event.preventDefault();
+  stateList = [];
+  localStorage.removeItem("cities");
+  document.location.reload();
+}
