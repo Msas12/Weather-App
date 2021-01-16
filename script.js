@@ -176,7 +176,7 @@ $(".search-button").on("click", function(event) {
     // Adds clear all button ONLY if it's not already there
     if ($('.list-group').children().length == 1) {
     // Adds a Clear all button to the bottom of searched list
-    var clearButton = $(`<a type="button" class="clear-button mt-3 btn btn-danger">Clear All&nbsp;<i class="fas fa-times-circle"></i></a>`)
+    var clearButton = $(`<button class="clear-button btn mt-3 btn btn-danger">Clear All&nbsp;<i class="fas fa-times-circle"></i></button>`)
 
     clearButton.addClass("list-group-item")
     $('.list-group').after(clearButton)
@@ -226,7 +226,7 @@ function getSavedCities() {
       searchCityForecast(cityList[i])
     }
     // Adds a Clear all button to the bottom of searched list
-    var clearButton = $(`<a type="button" class="clear-button mt-3 btn btn-danger">Clear All&nbsp;<i class="fas fa-times-circle"></i></a>`)
+    var clearButton = $(`<button class="clear-button btn mt-3 btn btn-danger">Clear All&nbsp;<i class="fas fa-times-circle"></i></button>`)
 
     clearButton.addClass("list-group-item")
     $('.list-group').after(clearButton)
