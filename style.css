@@ -1,3 +1,11 @@
+/* Button Fix for Safari */
+.btn {
+    display: inline-block;
+    text-decoration: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
 html, body { 
     background: url(https://image.freepik.com/free-photo/blue-day-clear-sky-with-light-clouds-smooth-blue-white-gradient-sky-wonderful-weather-background-morning-heaven-morning-with-copyspace-slightly-cloudy-backdrop-atmosphere-clear-day_102332-1718.jpg) no-repeat center center fixed; 
     -webkit-background-size: cover;
