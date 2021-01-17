@@ -1,6 +1,5 @@
 /* Button Fix for Safari */
 .btn {
-    display: inline-block;
     text-decoration: none;
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -20,4 +19,33 @@ html, body {
 
   .navbar-text {
       padding-left: 10px;
+  }
+
+  .blue {
+      background: url(./assets/images/background.png) no-repeat center center fixed; 
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+  }
+
+  /* for smaller devices */
+  @media only screen and (max-width: 1155px) {
+      
+    #dayOne {
+        margin-inline-start: 0 !important;
+    }
+    #dayTwo {
+        margin-inline-start: 0 !important;
+    }
+    #dayThree {
+        margin-inline-start: 0 !important;
+    }
+    #dayFour {
+        margin-inline-start: 0 !important;
+    }
+    #dayFive {
+        margin-inline-start: 0 !important;
+    }
+
   }

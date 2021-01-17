@@ -54,6 +54,7 @@ $.ajax({
       
       // Pulls info and sets color for UV Index 
       var uvi = response.daily[0].uvi
+      console.log(uvi)
       var uviEl = $('.uvi')
 
       uviEl.text(`UV Index: ${uvi}`)
@@ -160,7 +161,7 @@ $(".search-button").on("click", function(event) {
       return;
     }
 
-    var cityButton = $('<button>').addClass("btn btn-outline-secondary list-group-item")
+    var cityButton = $('<button>').addClass("btn btn-outline-dark mt-2 list-group-item")
     var addButton = cityButton.text(searchInput)
     $('.list-group').append(addButton)
     
@@ -176,7 +177,7 @@ $(".search-button").on("click", function(event) {
     // Adds clear all button ONLY if it's not already there
     if ($('.list-group').children().length == 1) {
     // Adds a Clear all button to the bottom of searched list
-    var clearButton = $(`<a type="button" class="clear-button mt-3 btn btn-danger">Clear All&nbsp;<i class="fas fa-times-circle"></i></a>`)
+    var clearButton = $(`<a type="button" class="clear-button mt-4 btn btn-outline-dark btn-danger">Clear All&nbsp;&nbsp;&nbsp;<i class="fas fa-times-circle"></i></a>`)
 
     clearButton.addClass("list-group-item")
     $('.list-group').after(clearButton)
@@ -218,7 +219,7 @@ function getSavedCities() {
 
     // Display saved Cities in list
     for (var i=0; i<cityList.length; i++) {
-      var cityButton = $('<button>').addClass("btn btn-outline-secondary list-group-item")
+      var cityButton = $('<button>').addClass("btn btn-outline-dark mt-2 list-group-item")
       var addButton = cityButton.text(cityList[i])
       $('.list-group').append(addButton)
 
@@ -226,7 +227,7 @@ function getSavedCities() {
       searchCityForecast(cityList[i])
     }
     // Adds a Clear all button to the bottom of searched list
-    var clearButton = $(`<a type="button" class="clear-button mt-3 btn btn-danger">Clear All&nbsp;<i class="fas fa-times-circle"></i></a>`)
+    var clearButton = $(`<a type="button" class="clear-button mt-4 btn btn-outline-dark btn-danger">Clear All&nbsp;&nbsp;&nbsp;<i class="fas fa-times-circle"></i></a>`)
 
     clearButton.addClass("list-group-item")
     $('.list-group').after(clearButton)

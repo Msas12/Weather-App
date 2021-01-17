@@ -26,12 +26,11 @@
         <div class="row">
             <aside class="col-lg-3 col-md-4 col-sm-12 pb-3 ml-2" id="side-pannel">
                 <div class="card shadow-lg p-3 mb-5 bg-white rounded"">
-                    <div class="card-header">
-                    Search for a City:
+                    <div class="card-header"><h4>Search for a City:</h4>
                     </div>
                     <div class="card-body">
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control search-input" placeholder="City,State" aria-label="City,State" aria-describedby="button-addon2">
+                            <input type="text" class="form-control search-input" placeholder="City, ST" aria-label="City,State" aria-describedby="button-addon2">
                             <div class="input-group-append">
                             <button class="btn btn-outline-secondary search-button" type="button" id="button-addon2">
                                 <i class="fas fa-search"></i>
@@ -50,32 +49,30 @@
 
             <main class="col-lg-8 col-md-7 col-sm-12 pb-3 d-none" id="main-body">
                 <div class="card shadow-lg p-3 mb-5 bg-white rounded"">
-                    <div class="card-header">
-                    Weather Dashboard
+                    <div class="card-header"><h4>Weather Dashboard</h4>
                     </div>
                     <!--Retrieved content dumps here-->
-                    <div class="card-body">
+                    <div class="card blue p-3">
                         <div class="city"></div>
                         <div class="description"></div>
                         <br>
-                        <div class="tempF"></div>
-                        <div class="feelsLike"></div>
-                        <div class="wind"></div>
-                        <div class="humidity"></div>
-                        <div class="uvi"></div>   
+                        <div class="tempF fw-bold"></div>
+                        <div class="feelsLike fw-bold"></div>
+                        <div class="wind fw-bold"></div>
+                        <div class="humidity fw-bold"></div>
+                        <div class="uvi fw-bolder"></div>   
                     </div>
                 </div>
                 <div class="card shadow-lg p-3 mb-5 bg-white rounded"">
-                    <div class="card-header">
-                    5 Day Forcast
+                    <div class="card-header"><h4>5 Day Forcast</h4>
                     </div>
                     <div class="card-body">
                         <div class="row forecast">
-                            <div id="dayOne" class="card col-md-2 pt-2"></div>
-                            <div id="dayTwo" class="card col-md-2 pt-2"></div>
-                            <div id="dayThree" class="card col-md-2 pt-2"></div>
-                            <div id="dayFour" class="card col-md-2 pt-2"></div>
-                            <div id="dayFive" class="card col-md-2 pt-2"></div>
+                            <div id="dayOne" class="card blue col-lg-2 mt-2 ms-4 pt-2 fw-bold"></div>
+                            <div id="dayTwo" class="card blue col-lg-2 mt-2 ms-4 pt-2 fw-bold"></div>
+                            <div id="dayThree" class="card blue col-lg-2 mt-2 ms-4 pt-2 fw-bold"></div>
+                            <div id="dayFour" class="card blue col-lg-2 mt-2 ms-4 pt-2 fw-bold"></div>
+                            <div id="dayFive" class="card blue col-lg-2 mt-2 ms-4 pt-2 fw-bold"></div>
                         </div>
                     </div>
                 </div>
